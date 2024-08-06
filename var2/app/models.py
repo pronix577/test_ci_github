@@ -1,11 +1,12 @@
-from typing import Dict, Any
+from typing import Any, Dict
+
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
 
-class Client(db.Model):
-    __tablename__ = 'client'
+class Client(db.Model):  # type: ignore[name-defined]
+    __tablename__ = "client"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -14,12 +15,11 @@ class Client(db.Model):
     car_number = db.Column(db.String(10))
 
     def to_json(self) -> Dict[str, Any]:
-        return {c.name: getattr(self, c.name) for c in
-                self.__table__.columns}
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
-class Parking(db.Model):
-    __tablename__ = 'parking'
+class Parking(db.Model):  # type: ignore[name-defined]
+    __tablename__ = "parking"
 
     id = db.Column(db.Integer, primary_key=True)
     address = db.Column(db.String(100), nullable=False)
@@ -28,21 +28,18 @@ class Parking(db.Model):
     count_available_places = db.Column(db.Integer, nullable=False)
 
     def to_json(self) -> Dict[str, Any]:
-        return {c.name: getattr(self, c.name) for c in
-                self.__table__.columns}
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
-class ClientParking(db.Model):
-    __tablename__ = 'client_parking'
+class ClientParking(db.Model):  # type: ignore[name-defined]
+    __tablename__ = "client_parking"
 
     id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
-    parking_id = db.Column(db.Integer, db.ForeignKey('parking.id'))
+    client_id = db.Column(db.Integer, db.ForeignKey("client.id"))
+    parking_id = db.Column(db.Integer, db.ForeignKey("parking.id"))
     time_in = db.Column(db.DateTime)
     time_out = db.Column(db.DateTime)
     unique_client_parking = db.UniqueConstraint(client_id, parking_id)
 
     def to_json(self) -> Dict[str, Any]:
-        return {c.name: getattr(self, c.name) for c in
-                self.__table__.columns}
-
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
