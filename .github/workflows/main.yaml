@@ -1,0 +1,27 @@
+name: Run Test
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Run unittest
+        run: pytest var2/tests
+      - name: Run mypy
+        run: mypy var2/app/
+      - name: Run black
+        run: black --diff --check var2/app/
+      - name: Run isort
+        run: isort --check-only var2/app/
+      - name: Run flask8
+        run: flake8 var2/app/
