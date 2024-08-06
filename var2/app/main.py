@@ -32,7 +32,6 @@ def create_app():
 
     @app.route("/clients", methods=["POST"])
     def create_client():
-
         name = request.form.get("name", type=str)
         surname = request.form.get("surname", type=str)
         credit_card = request.form.get("credit_card", type=str)
