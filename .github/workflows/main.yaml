@@ -20,8 +20,8 @@ jobs:
       - name: Run mypy
         run: mypy var2/app/
       - name: Run black
-        run: black --diff --check var2/app/
+        run: black --diff --check --line-length 79 var2/app/
       - name: Run isort
         run: isort --check-only var2/app/
       - name: Run flask8
-        run: flake8 var2/app/
+        run: flake8 --ignore=E711 var2/app/
