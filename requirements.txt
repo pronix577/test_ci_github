@@ -1,3 +1,5 @@
+flask
+flask-sqlalchemy
 pytest==7.0.1
 black
 isort
@@ -5,5 +7,5 @@ flake8==4.0.1
 flake8-bugbear==22.1.11
 flake8-pie==0.15.0
 mypy
-flask
-flask-sqlalchemy
+types-Flask
+factory-boy
