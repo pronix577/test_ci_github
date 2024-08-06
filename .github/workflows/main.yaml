@@ -16,7 +16,7 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
       - name: Run unittest
-        run: pytest var2/tests
+        run: pytest var2/test
       - name: Run mypy
         run: mypy var2/app/
       - name: Run black
