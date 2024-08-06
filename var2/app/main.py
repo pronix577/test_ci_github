@@ -109,7 +109,7 @@ def create_app():
         logs = (
             db.session.query(ClientParking.id)
             .filter(ClientParking.client_id == client_id)
-            .filter(ClientParking.time_out is None)
+            .filter(ClientParking.time_out == None)
             .first()
         )
 
